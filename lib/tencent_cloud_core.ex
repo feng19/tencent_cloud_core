@@ -24,7 +24,7 @@ defmodule TencentCloud.Core do
       [
         {"X-TC-Action", "ChatBot"},
         {"X-TC-Region", "ap-guangzhou"},
-        {"X-TC-Timestamp", 1632706407},
+        {"X-TC-Timestamp", "1632706407"},
         {"X-TC-Version", "2019-04-08"},
         {"Authorization", "TC3-HMAC-SHA256 Credential=GebjUWWJJVnL1en1gtgb52CmNJN8CqdKC0ne/2021-09-27/nlp/tc3_request, SignedHeaders=content-type;host, Signature=3ec0d092a50635e6bdfcf051750d55dca5bc39e270348d8e46f928d50d3ed833"},
         {"Content-Type", "application/json; charset=utf-8"},
@@ -45,7 +45,7 @@ defmodule TencentCloud.Core do
         body
       ) do
     content_type = Map.get(common, :content_type, "application/json; charset=utf-8")
-    timestamp = Map.get_lazy(common, :timestamp, fn -> System.system_time(:second) end)
+    timestamp = Map.get_lazy(common, :timestamp, fn -> System.system_time(:second) end) |> to_string()
 
     date =
       Map.get_lazy(common, :date, fn -> :erlang.date() |> Date.from_erl!() |> Date.to_string() end)
